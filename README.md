@@ -7,6 +7,12 @@ Les sources de l'application sont dans le répertoire __/Android/Mareu__.
 
 Le projet est développé en __java__ avec __Android Studio__.
 
+## Choix du langage Java pour le programme
+- Des Mises à jours régulières ;
+- Un accès aux fonctionnalités android plus facile ;
+- Une communauté importante de développeurs ;
+- Une maturité du langage plus importante ;
+
 ## Mise en place
 - Téléchargez le code du projet, de préférence en utilisant git clone.  
 - Télécharger __Android Studio__ : <https://developer.android.com/studio>  
