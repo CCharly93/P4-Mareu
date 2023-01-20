@@ -34,7 +34,7 @@ public class AddUsersDialogFragment extends DialogFragment implements AddUsersDi
     /**
      * Declare Class tag for logging
      */
-    private static final String TAG = "AddPersonsDialogFragment";
+    private static final String TAG = "AddUsersDialogFragment";
 
     /**
      * Minimum characters required for an email to add that person

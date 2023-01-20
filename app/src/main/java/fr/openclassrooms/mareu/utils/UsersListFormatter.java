@@ -38,7 +38,7 @@ public class UsersListFormatter {
             emailsSet.add(user.getEmail());
         }
         // build the string from the string set
-        return "Persons invited list:\n\n" + Joiner.on("\n").join(emailsSet);
+        return "Users invited list:\n\n" + Joiner.on("\n").join(emailsSet);
     }
 
 }

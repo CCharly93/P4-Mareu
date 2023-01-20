@@ -4,4 +4,10 @@
     <string name="enter_user_mail">Type user email adress</string>
     <string name="add_users_save">Save</string>
     <string name="add_users_button">Add users button</string>
+    <string name="create_meeting">Add meeting</string>
+    <string name="subject">Title</string>
+    <string name="room">Room</string>
+    <string name="meeting_date_and_time">Meeting date and time</string>
+    <string name="add_users_to_the_meeting">Add users to the meeting</string>
+    <string name="add_meetings_save">Save</string>
 </resources>

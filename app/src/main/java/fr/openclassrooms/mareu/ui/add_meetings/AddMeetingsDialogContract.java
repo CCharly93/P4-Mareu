@@ -6,34 +6,51 @@ import java.util.Set;
 import fr.openclassrooms.mareu.core.SimpleMvp;
 import fr.openclassrooms.mareu.model.User;
 
-public interface AddMeetingsDialogContract extends SimpleMvp {
+/**
+ * MeetingRegistration MVP Contract
+ * Contract between the view and the presenter
+ * Contract between the presenter and the model
+ */
+public interface AddMeetingsDialogContract {
 
+    /**
+     * Model interface
+     */
     interface Model extends SimpleMvp.Model {
-
+        // save the date of the meeting
         void saveMeetingDate(Instant meetingDate);
 
-        void saveMeetingUsers(Set<User> users);
+        // save the users invited to the meeting
+        void saveInvitedUsers(Set<User> users);
 
-        void saveMeetingRoom(String room);
+        // save the meeting
+        void saveMeeting(String place, String subject);
 
-        void saveMeetingSubject(String subject);
-
+        // get the meeting date
         Instant getMeetingDate();
 
+        // get the users invited to the meeting
         Set<User> getInvitedUsers();
-
     }
 
-    interface View extends SimpleMvp.View {
+    /**
+     * View interface
+     */
+    interface View extends SimpleMvp.View<Presenter> {
 
+        // show the meeting registration dialog to the screen
         void showDialog();
 
+        // dismiss the meeting registration dialog
         void returnBackToMeetings();
 
+        // update the meeting date
         void updateMeetingDate(Instant meetingDate);
 
-        void updateUsersInvitedToTheMeeting(String usersFlatList);
+        // update the persons invited to the meeting
+        void updateUsersInvitedToTheMeeting(String usersFlattenList);
 
+        // the topic must be set
         void setErrorTopicIsEmpty();
         // the place must be set
         void setErrorPlaceIsEmpty();
@@ -51,6 +68,9 @@ public interface AddMeetingsDialogContract extends SimpleMvp {
 
     }
 
+    /**
+     * Presenter interface
+     */
     interface Presenter extends SimpleMvp.Presenter {
 
         // on resume view request (after screen rotation)
@@ -74,5 +94,4 @@ public interface AddMeetingsDialogContract extends SimpleMvp {
         // method called when the user has selected persons in the add persons dialog
         void onUsersChanged(Set<User> users);
     }
-
 }

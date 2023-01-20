@@ -12,7 +12,11 @@ import java.util.TreeSet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fr.openclassrooms.mareu.di.DI;
+import fr.openclassrooms.mareu.model.Meeting;
 import fr.openclassrooms.mareu.model.User;
+import fr.openclassrooms.mareu.ui.add_meetings.AddMeetingsDialogFactory;
+import fr.openclassrooms.mareu.ui.add_meetings.AddMeetingsDialogFragment;
 import fr.openclassrooms.mareu.ui.add_users.AddUsersDialogFactory;
 import fr.openclassrooms.mareu.ui.add_users.AddUsersDialogFragment;
 /**import fr.openclassrooms.mareu.ui.meetings_registration.MeetingRegistrationDialogFactory;*/
@@ -72,13 +76,17 @@ public class MainActivity extends AppCompatActivity {
             );
             fragment.display(fm);
         });
-        /**button4.setOnClickListener(v -> {
-            MeetingRegistrationDialogFactory factory = new MeetingRegistrationDialogFactory();
-            factory
-                    .getFragment()
-                    .display(getFragmentManager());
-        });*/
+        button4.setOnClickListener(v -> {
+            AddMeetingsDialogFactory factory = new AddMeetingsDialogFactory();
+            AddMeetingsDialogFragment fragment = factory.getFragment();
+            fragment.display(fm);
+        });
 
 
     }
+
+    public void updateMeetingsFragments() {
+        DI.getMeetingsApiService().getMeetings().stream().map(x -> x.getSubject()).forEach(System.out::println);
+    }
+
 }
