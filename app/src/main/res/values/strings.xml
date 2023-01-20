@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mareu</string>
+    <string name="add_users">Add users</string>
+    <string name="enter_user_mail">Type user email adress</string>
+    <string name="add_users_save">Save</string>
+    <string name="add_users_button">Add users button</string>
+</resources>
