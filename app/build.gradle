@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "fr.openclassrooms.mareu"
-        minSdk 21
+        minSdk 21 //Android 5
         targetSdk 28
         versionCode 1
         versionName "1.0"

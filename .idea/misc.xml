@@ -12,7 +12,10 @@
         <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/layout/fragment_add_meetings_dialog.xml" value="0.33" />
         <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/layout/fragment_add_people_dialog.xml" value="0.28386004514672686" />
         <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/layout/fragment_add_users_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/layout/fragment_list_meetings.xml" value="0.16388044579533942" />
+        <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/layout/fragment_list_meetings_item.xml" value="0.1707193515704154" />
         <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/layout/fragment_meeting_registration_dialog.xml" value="0.2753623188405797" />
+        <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/layout/fragment_mettings_list.xml" value="0.1707193515704154" />
         <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/menu/add_persons_menu.xml" value="0.3453703703703704" />
         <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/menu/add_users_menu.xml" value="0.20092592592592592" />
         <entry key="..\:/Users/kkhro/AndroidStudioProjects/MareuCurrent/app/src/main/res/menu/meeting_registration_menu.xml" value="0.36666666666666664" />

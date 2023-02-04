@@ -72,7 +72,7 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
 
     // place text input
     @BindView(R.id.fragment_add_meetings_room_text_input)
-    TextInputLayout mPlaceTextInput;
+    TextInputLayout mRoomTextInput;
 
     // date text input
     @BindView(R.id.fragment_add_meetings_date_text_input)
@@ -162,7 +162,7 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
         // configure the subject text input
         configureSubjectTextInput();
         // configure the place text input
-        configurePlaceTextInput();
+        configureRoomTextInput();
         // configure the date text input
         configureDateTextInput();
         // configure the "add persons to the meeting" card view
@@ -197,7 +197,7 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
                     // date
                     Objects.requireNonNull(mDateTextInput.getEditText()).getText().toString(),
                     // place
-                    Objects.requireNonNull(mPlaceTextInput.getEditText()).getText().toString()
+                    Objects.requireNonNull(mRoomTextInput.getEditText()).getText().toString()
             );
             // return true to consume the event
             return true;
@@ -225,16 +225,16 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
     /**
      * Configure the place text input
      */
-    private void configurePlaceTextInput() {
+    private void configureRoomTextInput() {
         // set the action after the text changed on that input
-        Objects.requireNonNull(mPlaceTextInput.getEditText())
+        Objects.requireNonNull(mRoomTextInput.getEditText())
                 .addTextChangedListener(new SimpleTextWatcher() {
                     @Override
                     public void afterTextChanged(Editable s) {
                         // check if the length is valid, and if not, display an error message
-                        if (mPlaceTextInput.getEditText().getText().length() > TEXT_INPUT_MIN_LENGTH) {
+                        if (mRoomTextInput.getEditText().getText().length() > TEXT_INPUT_MIN_LENGTH) {
                             // trigger an error message
-                            mPlaceTextInput.setErrorEnabled(false);
+                            mRoomTextInput.setErrorEnabled(false);
                         }
                     }
                 });
@@ -367,8 +367,8 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
      * Place is empty error
      */
     @Override
-    public void setErrorPlaceIsEmpty() {
-        mPlaceTextInput.setError("Must be set");
+    public void setErrorRoomIsEmpty() {
+        mRoomTextInput.setError("Must be set");
     }
 
     /**

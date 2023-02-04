@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fragment_meetings_card_view_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_meetings_card_view_filter_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_2x"
+                android:layout_marginTop="@dimen/size_default"
+                android:layout_marginEnd="@dimen/size_2x"
+                android:layout_marginBottom="@dimen/size_default"
+                android:drawableStart="@drawable/ic_baseline_filter_list_24"
+                android:drawablePadding="@dimen/size_2x"
+                android:paddingStart="@dimen/size_2x"
+                android:paddingTop="@dimen/size_2x"
+                android:paddingEnd="@dimen/size_2x"
+                android:text="@string/filter_by_date_or_location"
+                android:textAppearance="@android:style/TextAppearance.Material"
+                android:textColor="@color/colorAccent" />
+
+            <ImageButton
+                android:id="@+id/fragment_meetings_card_view_filter_expand_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:contentDescription="@string/expand_icon"
+                android:padding="@dimen/size_default"
+                android:src="@drawable/ic_baseline_expand_24"
+                android:visibility="visible" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_meetings_card_view_filter_place"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_2x"
+                android:layout_marginTop="@dimen/size_default"
+                android:layout_marginEnd="@dimen/size_2x"
+                android:layout_marginBottom="@dimen/size_default"
+                android:hint="@string/filter_room"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_place_24"
+                    android:drawableEnd="@drawable/ic_baseline_clear_24"
+                    android:drawablePadding="@dimen/size_2x"
+                    android:maxLength="25" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+           <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_meetings_card_view_filter_start_date"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_2x"
+                android:layout_marginTop="@dimen/size_default"
+                android:layout_marginEnd="@dimen/size_2x"
+                android:layout_marginBottom="@dimen/size_default"
+                android:hint="@string/filter_start_date"
+                android:visibility="gone"
+                app:helperText="dd/mm/yy or empty">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:drawableStart="@drawable/ic_baseline_access_time_24bis"
+                   android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24bis"
+                   android:drawablePadding="@dimen/size_2x"
+                   android:inputType="datetime"
+                   android:maxLength="8" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+           <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_meetings_card_view_filter_end_date"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_2x"
+                android:layout_marginTop="@dimen/size_default"
+                android:layout_marginEnd="@dimen/size_2x"
+                android:layout_marginBottom="@dimen/size_default"
+                android:visibility="gone"
+                android:hint="@string/filter_end_date"
+                app:helperText="dd/mm/yyyy or empty">
+
+               <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_baseline_access_time_24bis"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24bis"
+                    android:drawablePadding="@dimen/size_2x"
+                    android:inputType="datetime"
+                    android:maxLength="8" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fragment_meetings_card_view_filter_apply_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:padding="@dimen/size_2x"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/size_title"
+                android:visibility="gone"
+                android:text="@string/apply"
+                app:cornerRadius="0dp" />
+
+            <ImageButton
+                android:id="@+id/fragment_meetings_card_view_filter_collapse_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:contentDescription="@string/expand_icon"
+                android:padding="@dimen/size_2x"
+                android:src="@drawable/ic_baseline_expand_less_24"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_meetings_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_meetings_card_view_filter" />
+
+</RelativeLayout>

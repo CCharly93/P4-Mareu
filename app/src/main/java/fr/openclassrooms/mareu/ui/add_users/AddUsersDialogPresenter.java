@@ -3,7 +3,7 @@ package fr.openclassrooms.mareu.ui.add_users;
 import fr.openclassrooms.mareu.model.User;
 
 /**
- * The presenter for the AddPersonsDialog
+ * The presenter for the AddUsersDialog
  */
 public class AddUsersDialogPresenter implements AddUsersDialogContract.Presenter {
 
@@ -30,8 +30,8 @@ public class AddUsersDialogPresenter implements AddUsersDialogContract.Presenter
     }
 
     /**
-     * Add a person to the list (set) of persons
-     * @param person the person to add
+     * Add a user to the list (set) of users
+     * @param user the person to add
      */
     @Override
     public void onUserAdded(User user) {

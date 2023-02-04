@@ -53,7 +53,7 @@ public interface AddMeetingsDialogContract {
         // the topic must be set
         void setErrorTopicIsEmpty();
         // the place must be set
-        void setErrorPlaceIsEmpty();
+        void setErrorRoomIsEmpty();
         // the date must be set
         void setErrorDateIsEmpty();
         // the date is in the wrong format (see DateEasy utils class)

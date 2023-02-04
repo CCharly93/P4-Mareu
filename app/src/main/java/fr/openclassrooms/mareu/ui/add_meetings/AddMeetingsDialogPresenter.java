@@ -68,7 +68,7 @@ public class AddMeetingsDialogPresenter implements AddMeetingsDialogContract.Pre
             // the place is empty
             isError = true;
             // display the error
-            mView.setErrorPlaceIsEmpty();
+            mView.setErrorRoomIsEmpty();
         }
 
         // check if the topic is empty

@@ -20,6 +20,9 @@ import fr.openclassrooms.mareu.ui.add_meetings.AddMeetingsDialogFragment;
 import fr.openclassrooms.mareu.ui.add_users.AddUsersDialogFactory;
 import fr.openclassrooms.mareu.ui.add_users.AddUsersDialogFragment;
 /**import fr.openclassrooms.mareu.ui.meetings_registration.MeetingRegistrationDialogFactory;*/
+import fr.openclassrooms.mareu.ui.list_meetings.ListMeetingsFragment;
+import fr.openclassrooms.mareu.ui.list_meetings.ListMeetingsModel;
+import fr.openclassrooms.mareu.ui.list_meetings.ListMeetingsPresenter;
 import fr.openclassrooms.mareu.ui.pickers.date.DatePickerFactory;
 import fr.openclassrooms.mareu.ui.pickers.date.DatePickerFragment;
 import fr.openclassrooms.mareu.ui.pickers.time.TimePickerFactory;
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     Button button3;
     @BindView(R.id.button4)
     Button button4;
+    @BindView(R.id.button5)
+    Button button5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +87,16 @@ public class MainActivity extends AppCompatActivity {
             fragment.display(fm);
         });
 
+        button5.setOnClickListener(v -> {
+            ListMeetingsFragment f = ListMeetingsFragment.newInstance();
+            ListMeetingsModel m = new ListMeetingsModel();
+            ListMeetingsPresenter p = new ListMeetingsPresenter(f, m);
 
+            fm.beginTransaction()
+
+                    .add(R.id.activity_meetings, f)
+                    .commit();
+        });
     }
 
     public void updateMeetingsFragments() {
