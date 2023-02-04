@@ -30,9 +30,21 @@ Le projet est développé en __java__ avec __Android Studio__.
 Des tests unitaires sont disponibles dans le répertoire /src/test/  
 Ils utilisent junit4.  
 Les méthodes disponibles sont :  
-
+- emptyMeetingsAtServiceStartup() : Test qui vérifie qu'il n'y a aucune réunion dans le service au démarrage.
+- getMeetings() : Test qui vérifie qu'il y a bien 4 réunions dans le service (après voir ajouté quatre réunions).
+- addMeetings() : Test qui vérifie que les réunions sont bien ajoutées au service.
+- deleteMeetings() : Test qui vérifie que les réunions sont bien effacées du service.
+- sortMeetingsByDatetime() : Test qui vérifie que les réunions sont bien classées par date.
 
 ## Les tests instumentalisés
 Des tests instrumentalisés sont disponibles dans le répertoire /src/androidTest/  
 Ils utilisent junit et Espresso  
-Les méthodes disponibles sont :  
+Les méthodes disponibles sont : 
+- meetingsListTest_shouldNotBeEmpty() : Test qui vérifie que la liste des meetings n'est pas vide.
+- meetingsListTest_shouldContainFourMeetings() : Test qui vérifie que la liste contient 4 réunions.
+- meetingsListTest_createAction_shouldAddItem() : Test qui vérifie qu'une réunion a bien été ajoutée.
+- meetingsListTest_deleteAction_shouldRemoveItem() : Test 
+- meetingsListTest_filterAction_shouldHideItem()
+- 
+- Test qu'une réunion a bien été ajoutée
+- Test the meetings drop meeting action on the list (recycler view)
