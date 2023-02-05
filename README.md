@@ -43,8 +43,5 @@ Les méthodes disponibles sont :
 - meetingsListTest_shouldNotBeEmpty() : Test qui vérifie que la liste des meetings n'est pas vide.
 - meetingsListTest_shouldContainFourMeetings() : Test qui vérifie que la liste contient 4 réunions.
 - meetingsListTest_createAction_shouldAddItem() : Test qui vérifie qu'une réunion a bien été ajoutée.
-- meetingsListTest_deleteAction_shouldRemoveItem() : Test 
-- meetingsListTest_filterAction_shouldHideItem()
-- 
-- Test qu'une réunion a bien été ajoutée
-- Test the meetings drop meeting action on the list (recycler view)
+- meetingsListTest_deleteAction_shouldRemoveItem() : Test qui vérifie qu'une réunion a bien été retirée.
+- meetingsListTest_filterAction_shouldHideItem() : Test qui vérifie que la liste est bien organisée par "Salle".
