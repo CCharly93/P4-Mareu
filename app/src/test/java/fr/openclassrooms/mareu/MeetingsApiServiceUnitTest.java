@@ -197,8 +197,8 @@ public class MeetingsApiServiceUnitTest {
 
     @Test
     // On rajoute les 4 meetings (One, Two, Three, Four) à la liste complète des réunions "meetings".
-    // On leur attribue un index.
-    // On trie les réunions selon leur index.
+    // On leur attribue un index via l'ajoute dans la collection de meetings
+    // On trie les réunions selon leur date d'occurence
     public void sortMeetingsByDatetime(){
         service.addMeeting(meetingTwo);
         service.addMeeting(meetingFour);
@@ -210,13 +210,11 @@ public class MeetingsApiServiceUnitTest {
         assertEquals(meetingThree, service.getMeetings().get(3));
         assertEquals(meetingFour, service.getMeetings().get(1));
 
+        //Tri par date, grâce au compareTo implémenté dans l'objet Model Meeting
         Collections.sort(service.getMeetings());
         assertEquals(meetingOne, service.getMeetings().get(0));
         assertEquals(meetingTwo, service.getMeetings().get(1));
         assertEquals(meetingThree, service.getMeetings().get(2));
         assertEquals(meetingFour, service.getMeetings().get(3));
     }
-
-
-
 }

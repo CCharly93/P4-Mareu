@@ -30,77 +30,50 @@ import fr.openclassrooms.mareu.ui.pickers.time.TimePickerFragment;
 import fr.openclassrooms.mareu.utils.DateEasy;
 
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.button)
-    Button button;
-    @BindView(R.id.button2)
-    Button button2;
-    @BindView(R.id.button3)
-    Button button3;
-    @BindView(R.id.button4)
-    Button button4;
-    @BindView(R.id.button5)
-    Button button5;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        final FragmentManager fm = getSupportFragmentManager();
-        button.setOnClickListener(v -> {
-            System.out.println("Clique sur le bouton");
-            // create the date picker factory
-            DatePickerFactory factory = new DatePickerFactory();
-            // get the fragment ..
-            DatePickerFragment fragment = factory.getFragment(
-                    DateEasy.now(),
-                    null,
-                    !false,
-                    // on date set, notify the presenter
-                    (datePicked) -> System.out.println("Une date a été choisi : " + datePicked)
-            );
-            // .. and display it
-            fragment.display(fm);
-        });
-        button2.setOnClickListener(v -> {
-           TimePickerFactory factory = new TimePickerFactory();
-           TimePickerFragment fragment = factory.getFragment(
-                   DateEasy.now(),
-                   (timePicked) -> System.out.println("Une heure a été choisie " + timePicked)
-           );
-           fragment.display(fm);
-        });
-        button3.setOnClickListener(v -> {
-            Set<User> users = new TreeSet<>();
-            users.add(new User("charly@gmail.com"));
-            users.add(new User("charlie@gmail.com"));
-            AddUsersDialogFactory factory = new AddUsersDialogFactory();
-            AddUsersDialogFragment fragment = factory.getFragment(
-                    users,
-                    (usersSet) -> usersSet.stream().map(x -> x.getEmail()).forEach(System.out::println)
-            );
-            fragment.display(fm);
-        });
-        button4.setOnClickListener(v -> {
-            AddMeetingsDialogFactory factory = new AddMeetingsDialogFactory();
-            AddMeetingsDialogFragment fragment = factory.getFragment();
-            fragment.display(fm);
-        });
+        /**
+         * The underlying fragment presenter
+         */
+        private ListMeetingsPresenter mListMeetingsPresenter;
 
-        button5.setOnClickListener(v -> {
-            ListMeetingsFragment f = ListMeetingsFragment.newInstance();
-            ListMeetingsModel m = new ListMeetingsModel();
-            ListMeetingsPresenter p = new ListMeetingsPresenter(f, m);
+        /**
+         * called when the activity is created (ui life cycle android)
+         * @param savedInstanceState the saved instance state
+         */
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            // call the super method
+            super.onCreate(savedInstanceState);
+            // set the content view
+            setContentView(R.layout.activity_main);
 
-            fm.beginTransaction()
+            // try to recover the existing fragment
+            ListMeetingsFragment mListMeetingsFragment = (ListMeetingsFragment)
+                    getSupportFragmentManager()
+                            .findFragmentById(R.id.activity_meetings);
 
-                    .add(R.id.activity_meetings, f)
-                    .commit();
-        });
-    }
+            // if the fragment doesn't exist, create it
+            if (mListMeetingsFragment == null) {
+                // create the fragment
+                mListMeetingsFragment = ListMeetingsFragment.newInstance();
+                // add the fragment to the activity
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.activity_meetings, mListMeetingsFragment)
+                        .commit();
+            }
 
-    public void updateMeetingsFragments() {
-        DI.getMeetingsApiService().getMeetings().stream().map(x -> x.getSubject()).forEach(System.out::println);
-    }
+            // create the model
+            ListMeetingsModel listMeetingsModel = new ListMeetingsModel();
+
+            // create the presenter
+            mListMeetingsPresenter = new ListMeetingsPresenter(mListMeetingsFragment, listMeetingsModel);
+        }
+
+        /**
+         * called when a back button is pressed on the registration (add) meeting fragment
+         */
+        public void updateMeetingsFragments() {
+            mListMeetingsPresenter.onRefreshMeetingsListRequested();
+        }
 
 }
