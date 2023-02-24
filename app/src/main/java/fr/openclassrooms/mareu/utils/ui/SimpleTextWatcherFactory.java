@@ -7,25 +7,10 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
-/**
- * Factory to ease SimpleTextWatcher objects creation
- */
 public class SimpleTextWatcherFactory {
 
-    /**
-     * Len that means empty
-     */
     private static final int MIN_TEXT_LEN = 0;
 
-    /**
-     * Create a SimpleTextWatcher object
-     * @param textInput the TextInputLayout to watch
-     * @param drawableStartNotEmpty the drawable to set when the text is not empty (start)
-     * @param drawableEndNotEmpty the drawable to set when the text is not empty (end)
-     * @param drawableStartEmpty the drawable to set when the text is empty (start)
-     * @param drawableEndEmpty the drawable to set when the text is empty (end)
-     * @return
-     */
     public SimpleTextWatcher getDefault(
         TextInputLayout textInput,
         Drawable drawableStartNotEmpty,

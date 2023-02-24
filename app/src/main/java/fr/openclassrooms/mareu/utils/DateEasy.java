@@ -12,19 +12,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.TimeZone;
 
-/**
- * A Date utils class, that groups static functions related to parse and format Java 8's Instant
- */
 public class DateEasy {
 
-    /**
-     * Set logger TAG
-     */
     private static final String TAG = "DateEasy";
 
-    /**
-     * Bind the app TimeZone
-     */
     private static final String sDebugZone = "Europe/Paris";
     private static final ZoneId sLocaleZone = getZoneId();
     static ZoneId getZoneId() {
@@ -36,16 +27,10 @@ public class DateEasy {
             ret = ZoneId.of(sDebugZone);
         } else {
             // .. get the current TimeZone
-            /**ZoneId currentZone = TimeZone.getDefault().toZoneId();
-            Log.d(TAG,"Release Mode. TimeZone is " + currentZone.getId());
-            ret = currentZone;*/
         }
         return ret;
     }
 
-    /**
-     * DateTime Formatters
-     */
     // full date time formatter, used by pickers
     private static final DateTimeFormatter sDateTimeFormatter =
             DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
@@ -56,11 +41,6 @@ public class DateEasy {
     private static final DateTimeFormatter sSpecialFormatter =
             DateTimeFormatter.ofPattern("dd MMMM HH:mm");
 
-    /**
-     * Parse DateTime string (regarding full date time formatter) to Instant
-     * @param date the date string in full date time format
-     * @return the corresponding Instant, or null, if the input String is in wrong format
-     */
     public static Instant parseDateTimeStringToInstant(String date){
         try {
             // parse the "date" parameter, as ZonedDateTime
@@ -79,11 +59,6 @@ public class DateEasy {
         }
     }
 
-    /**
-     * Parse Date string (regarding full date formatter) to Instant
-     * @param date the date string in full date format
-     * @return the corresponding Instant, or null, if the input String is in wrong format
-     */
     public static Instant parseDateStringToInstant(String date){
         try {
             // parse the "date" parameter, as ZonedDateTime
@@ -100,14 +75,6 @@ public class DateEasy {
         }
     }
 
-    /**
-     * Try to parse :
-     *  - DateTime String as Instant
-     *  - Date String as Instant
-     *  - if nothing matches, return now()
-     * @param date the date string in full date (or date time) format
-     * @return the corresponding Instant, or now(), if the input String is in wrong format
-     */
     public static Instant parseDateTimeOrDateOrReturnNow(String date){
         Instant ret;
         if (
@@ -123,20 +90,10 @@ public class DateEasy {
         return ret;
     }
 
-    /**
-     * Return now as Instant
-     */
     public static Instant now(){
         return Instant.now();
     }
 
-    /**
-     * Compute Instant from Local (Zoned) Date
-     * @param year The year
-     * @param month The month
-     * @param day The day
-     * @return
-     */
     public static Instant computeInstantFromLocalDate(int year, int month, int day) {
         return ZonedDateTime
                 .now(sLocaleZone)
@@ -147,13 +104,6 @@ public class DateEasy {
                 .toInstant();
     }
 
-    /**
-     * Merge current Instant with local Zone Date, and return a new Instant
-     * @param date the date
-     * @param hour the hour to merge
-     * @param minute the minute to merge
-     * @return resulting Instant
-     */
     public static Instant mergeInstantAndLocalZonedTime(Instant date, int hour, int minute) {
         ZonedDateTime zdt = date.atZone(sLocaleZone);
         return zdt
@@ -163,11 +113,6 @@ public class DateEasy {
                 .toInstant();
     }
 
-    /**
-     * Get Instant component (year, month, day, hour, minute, ...), with Zone in mind
-     * @param date the date
-     * @return the corresponding component
-     */
     public static int getZonedInstantYear(Instant date) {
         ZonedDateTime zdt = date.atZone(sLocaleZone);
         return zdt.getYear();
@@ -189,68 +134,36 @@ public class DateEasy {
         return zdt.getMinute();
     }
 
-    /**
-     * Add one year to a date
-     * @param date the date
-     * @return the resulting date
-     */
     public static Instant plusOneYear(Instant date){
         ZonedDateTime zdt = date.atZone(sLocaleZone);
         return zdt.plusYears(1).toInstant();
     }
 
-    /**
-     * Set the time to a given date to 23:59:59
-     * @param date the date
-     * @return the resulting date
-     */
     public static Instant endOfDay(Instant date){
         ZonedDateTime zdt = date.atZone(sLocaleZone);
         return zdt.withHour(23).withMinute(59).withSecond(59).toInstant();
     }
 
-    /**
-     * Set the time to a given date to 00:00:00
-     * @param date the date
-     * @return the resulting date
-     */
     public static Instant startOfDay(Instant date){
         ZonedDateTime zdt = date.atZone(sLocaleZone);
         return zdt.withHour(0).withMinute(0).withSecond(0).toInstant();
     }
 
-    /**
-     * Add days
-     */
     public static Instant plusDays(Instant date, int days) {
         ZonedDateTime zdt = date.atZone(sLocaleZone);
         return zdt.plusDays(days).toInstant();
     }
 
-    /**
-     * Get current date time, and return as special formatting String
-     * @return the current locale date time formatted as string
-     */
     public static String localeDateTimeStringFromNow(){
         return localeDateTimeStringFromInstant(now());
     }
 
-    /**
-     * Get current date, and return as special formatting String
-     * @param instant the instant
-     * @return the current locale date formatted as string
-     */
     public static String localeDateTimeStringFromInstant(Instant instant){
         if(instant == null) return null;
         ZonedDateTime zdt = instant.atZone(sLocaleZone);
         return zdt.format(sDateTimeFormatter);
     }
 
-    /**
-     * Convert given date to a special formatting String
-     * @param instant the instant
-     * @return the locale date time formatted as string
-     */
     public static String localeSpecialStringFromInstant(Instant instant){
         ZonedDateTime zdt = instant.atZone(sLocaleZone);
         return zdt.format(sSpecialFormatter);

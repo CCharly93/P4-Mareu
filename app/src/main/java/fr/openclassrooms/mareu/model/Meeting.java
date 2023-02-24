@@ -57,18 +57,25 @@ public class Meeting implements Comparable<Meeting> {
         this.users.add(user);
     }
 
-    //Ajout en un seul appel de plusieurs utilisateurs dans Meeting
     public void addUsers(User... users) {
         this.users.addAll(Stream.of(users).collect(Collectors.toList()));
     }
 
+    /**
+     * Compare two meetings, by comparing their dates
+     * @param o Meeting to compare to
+     * @return 0 if equal, -1 if this is before o, 1 if this is after o
+     */
     @Override
-    //Indique que deux objets Meeting peuvent être comparé selon leur date
-    //(Servira pour l'affiche dans un ordre croissant des meeting selon la date)
     public int compareTo(Meeting o) {
         return getDate().compareTo(o.getDate());
     }
 
+    /**
+     * Test if two meetings are equal, by comparing their dates and places
+     * @param o Meeting to compare to
+     * @return true if equal, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,6 +85,10 @@ public class Meeting implements Comparable<Meeting> {
         return room.equals(meeting.room);
     }
 
+    /**
+     * Get the hashcode of the meeting, by using the hashcode of its date and place
+     * @return Hashcode of the meeting
+     */
     @Override
     public int hashCode() {
         return Objects.hash(room, date);

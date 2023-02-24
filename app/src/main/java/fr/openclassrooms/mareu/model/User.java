@@ -18,6 +18,11 @@ public class User implements Comparable <User> {
         this.email = email;
     }
 
+    /**
+     * Compare two persons by email
+     * @param o Object to compare
+     * @return true if equals, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -26,13 +31,23 @@ public class User implements Comparable <User> {
         return email.equals(user.email);
     }
 
+    /**
+     * Compare two persons by email
+     * @param user User to compare
+     * @return 0 if equals, -1 if this is before user, 1 if this is after user
+     */
+    @Override
+    public int compareTo(User user) {
+        return email.compareTo(user.getEmail());
+    }
+
+    /**
+     * Hashcode of a person, based on email
+     * @return Hashcode of a person
+     */
     @Override
     public int hashCode() {
         return Objects.hash(email);
     }
 
-    @Override
-    public int compareTo(User user) {
-        return email.compareTo(user.getEmail());
-    }
 }

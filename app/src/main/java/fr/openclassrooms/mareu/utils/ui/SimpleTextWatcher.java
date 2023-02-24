@@ -3,7 +3,7 @@ package fr.openclassrooms.mareu.utils.ui;
 import android.text.TextWatcher;
 
 /**
- * Simplify TextWatcher by discarding never used beforeTextChanged and onTextChanged methods
+ * Simplifying TextWatcher by discarding never used beforeTextChanged and onTextChanged methods
  */
 public abstract class SimpleTextWatcher implements TextWatcher {
     @Override

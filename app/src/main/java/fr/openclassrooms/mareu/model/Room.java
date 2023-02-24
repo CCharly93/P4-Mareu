@@ -19,6 +19,11 @@ public class Room {
 
         public void setName(String name) { this.name = name; }
 
+    /**
+     * Compare two rooms by name
+     * @param o Room to compare
+     * @return 0 if equals, -1 if this is before o, 1 if this is after o
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -27,6 +32,10 @@ public class Room {
         return name.equals(room.name);
     }
 
+    /**
+     * Compute the hash code
+     * @return Hash code
+     */
     @Override
     public int hashCode() {
         return Objects.hash(name);
