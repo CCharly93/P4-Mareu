@@ -38,29 +38,13 @@ import fr.openclassrooms.mareu.utils.ui.SimpleTextWatcher;
 
 public class AddMeetingsDialogFragment extends DialogFragment implements AddMeetingsDialogContract.View {
 
-    /**
-     * Tag for logging
-     */
     private static final String TAG = "MeetingRegistrationDialogFragment";
 
-    /**
-     * Text input min length for text inputs
-     */
     private static final int TEXT_INPUT_MIN_LENGTH = 0;
 
-    /**
-     * The presenter
-     */
     private AddMeetingsDialogContract.Presenter mPresenter;
 
-    /**
-     * Buffer the fragment manager
-     */
     private FragmentManager mFragmentManager;
-
-    /**
-     * Ui components
-     */
 
     // save toolbar
     @BindView(R.id.fragment_add_meetings_dialog_toolbar)
@@ -86,52 +70,31 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
     @BindView(R.id.fragment_add_meetings_users_full_list_text)
     TextView mUsersFullListText;
 
-    /**
-     * Constructor
-     */
     public AddMeetingsDialogFragment() {
         // always call the default constructor
         super();
     }
 
-    /**
-     * Create a new instance of the dialog fragment
-     */
     public static AddMeetingsDialogFragment newInstance() {
         return new AddMeetingsDialogFragment();
     }
 
-    /**
-     * Attach the presenter, to avoid circular dependency issue
-     * (the view need the presenter to instantiate, and the presenter need the view to instantiate)
-     * @param presenter the presenter
-     */
     @Override
     public void attachPresenter(@NonNull AddMeetingsDialogContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
     }
 
-    /**
-     * Implements the display method, to show the UI
-     */
     public void display(FragmentManager fragmentManager) {
         mFragmentManager = checkNotNull(fragmentManager);
         // signal the presenter we want to init and display the dialog
         mPresenter.init();
     }
 
-    /**
-     * Show the UI
-     */
     @Override
     public void showDialog() {
         show(mFragmentManager, TAG);
     }
 
-    /**
-     * We override onCreate, to define that we want to retain the state of the fragment
-     * @param savedInstanceState the saved instance state
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // always call the super class method
@@ -143,13 +106,6 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme_LightDialog);
     }
 
-    /**
-     * We override onCreateView, to further define the behavior of the UI at startup
-     * @param inflater the layout inflater
-     * @param container the container
-     * @param savedInstanceState the saved instance state
-     * @return the view
-     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // always call the super class method
@@ -171,15 +127,6 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
         return view;
     }
 
-    /**
-     * You should inflate your layout in onCreateView but shouldn't
-     * initialize other views (like inflating the menu) in onCreateView.
-     *
-     * So to avoid crash, we need to call such UI method in onViewCreated
-     *
-     * @param view the view
-     * @param savedInstanceState the saved instance state
-     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         // always call the super class method
@@ -204,9 +151,6 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
         });
     }
 
-    /**
-     * Configure the subject text input
-     */
     private void configureSubjectTextInput() {
         // set the action after the text changed on that input
         Objects.requireNonNull(mSubjectTextInput.getEditText())
@@ -222,9 +166,6 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
                 });
     }
 
-    /**
-     * Configure the place text input
-     */
     private void configureRoomTextInput() {
         // set the action after the text changed on that input
         Objects.requireNonNull(mRoomTextInput.getEditText())
@@ -240,9 +181,6 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
                 });
     }
 
-    /**
-     * Configure the date text input
-     */
     private void configureDateTextInput() {
         // if the user click on the date text input ..
         Objects.requireNonNull(mDateTextInput.getEditText()).setOnClickListener(
@@ -280,17 +218,11 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
         mDateTextInput.getEditText().setText(DateEasy.localeDateTimeStringFromNow());
     }
 
-    /**
-     * Configure the "add persons to the meeting" card view
-     */
     private void configureAddUsersCardView() {
         // set the action when the card view is clicked
         mUsersCardView.setOnClickListener(v -> mPresenter.onAddUsersRequest());
     }
 
-    /**
-     * Preserve the state of the dialog when the device is rotated
-     */
     @Override
     public void onResume() {
         super.onResume();
@@ -298,30 +230,17 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
         mPresenter.onResumeRequest();
     }
 
-    /**
-     * When we leave the meeting registration dialog, we need to update the list of meetings
-     * on the main activity
-     * @param dialogInterface the dialog interface
-     */
     @Override
     public void onDismiss(@NonNull DialogInterface dialogInterface) {
         // We need to update the list of meetings on the main activity
         ((MainActivity) Objects.requireNonNull(getContext())).updateMeetingsFragments();
     }
 
-
-    /**
-     * Return back to main activity
-     */
     @Override
     public void returnBackToMeetings() {
         dismiss();
     }
 
-    /**
-     * Update the meeting date
-     * @param meetingDate the meeting date
-     */
     @Override
     public void updateMeetingDate(Instant meetingDate) {
         Objects.requireNonNull(mDateTextInput
@@ -329,52 +248,32 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
                 .setText(DateEasy.localeDateTimeStringFromInstant(meetingDate));
     }
 
-    /**
-     * Update the UI full list of persons
-     * @param usersFlattenList the flatten list of persons invited to the meeting
-     */
     @Override
     public void updateUsersInvitedToTheMeeting(String usersFlattenList) {
         mUsersFullListText.setText(usersFlattenList);
         mUsersFullListText.setVisibility(View.VISIBLE);
     }
 
-    /**
-     * Date is empty error
-     */
     @Override
     public void setErrorDateIsEmpty() {
         mDateTextInput.setError("Must be set");
     }
 
-    /**
-     * Date is in wrong format error
-     */
     @Override
     public void setErrorDateIsInWrongFormat() {
         mDateTextInput.setError("Date in wrong format");
     }
 
-    /**
-     * Topic is empty error
-     */
     @Override
     public void setErrorTopicIsEmpty() {
         mSubjectTextInput.setError("Must be set");
     }
 
-    /**
-     * Place is empty error
-     */
     @Override
     public void setErrorRoomIsEmpty() {
         mRoomTextInput.setError("Must be set");
     }
 
-    /**
-     * Trigger the date picker dialog
-     * @param meetingDate the initial date to set in the date picker
-     */
     @Override
     public void triggerDatePickerDialog(Instant meetingDate) {
         // create the date picker factory
@@ -394,10 +293,6 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
         fragment.display(getFragmentManager());
     }
 
-    /**
-     * Trigger the time picker dialog
-     * @param meetingDate the initial date/time to set in the time picker
-     */
     @Override
     public void triggerTimePickerDialog(Instant meetingDate) {
         // create the time picker factory
@@ -413,10 +308,6 @@ public class AddMeetingsDialogFragment extends DialogFragment implements AddMeet
         fragment.display(getFragmentManager());
     }
 
-    /**
-     * Trigger the add persons to the current meeting dialog
-     * @param initialUsers the initial persons to set in the add persons dialog
-     */
     @Override
     public void triggerAddUsersDialog(Set<User> initialUsers) {
         // create the add persons dialog factory
